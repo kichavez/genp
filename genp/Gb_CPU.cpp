@@ -33,6 +33,21 @@ Gb_CPU::Gb_CPU(Genp* emulator) {
 }
 
 void Gb_CPU::executeNextInstruction() {
-	Instruction instruction(m_emulator->m_cartridgeMem[m_pc]);
+	Instruction instr(m_emulator->m_cartridgeMem[m_pc]);
 
+	switch (instr.getHighOctal()) {
+
+	// prefix opcodes
+	case 0xCB:
+	case 0xDD:
+	case 0xED:
+	case 0xFD:
+
+		/* Handle prefixed stuff */
+
+		break;
+
+	default:
+		break;
+	}
 }

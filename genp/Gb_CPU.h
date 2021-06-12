@@ -4,6 +4,7 @@
 #include <constants.h>
 
 class Genp;
+class Instruction;
 
 class Gb_CPU {
 public:
@@ -12,6 +13,7 @@ public:
 	void executeNextInstruction();
 
 private:
+
 	Genp* m_emulator;
 
 	// registers
@@ -22,5 +24,7 @@ private:
 
 	// program counter
 	word m_pc;
+
+	void decodePrefixedInstruction(Instruction i);
 
 };
