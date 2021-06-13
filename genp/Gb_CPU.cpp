@@ -46,6 +46,7 @@ m_reg8_l { m_reg16_hl.raw[LO_BYTE] }
 	m_pc = genp_constant::PC_INIT_VALUE;
 
 	// initialize disassembly tables
+
 	m_table_reg8[0] = &m_reg8_b;
 	m_table_reg8[1] = &m_reg8_c;
 	m_table_reg8[2] = &m_reg8_d;
@@ -54,6 +55,8 @@ m_reg8_l { m_reg16_hl.raw[LO_BYTE] }
 	m_table_reg8[5] = &m_reg8_l;
 	m_table_reg8[6] = nullptr;		// special case to be handled; treat HL as ptr to 8-bit value
 	m_table_reg8[7] = &m_reg8_a;
+
+
 }
 
 void Gb_CPU::executeNextInstruction() {

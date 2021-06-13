@@ -35,6 +35,7 @@ private:
 	byte& m_reg8_e;
 	byte& m_reg8_h;
 	byte& m_reg8_l;
+	// TODO: cull unused register references later
 
 	// register operations
 	byte add8(byte b1, byte b2);
@@ -48,7 +49,9 @@ private:
 	word m_pc;
 
 	// disassembly tables to take advantage of certain patterns in CPU's instructions
-	byte* m_table_reg8[8];	// 8 bit register table
+	byte* m_table_reg8[8];		// 8 bit register table
+	word* m_table_spReg16[4];	// 16 bit registers that interact with stack ptr
+	word* m_table_afReg16[4];	// 16 bit registers that interact with AF
 	
 
 	void decodePrefixedInstruction(Instruction& instr);
