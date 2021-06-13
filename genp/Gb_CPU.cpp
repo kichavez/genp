@@ -44,8 +44,10 @@ void Gb_CPU::executeNextInstruction() {
 	case 0xFD:
 
 		/* Handle prefixed stuff */
-
+		
 		break;
+
+
 
 	default:
 		break;
