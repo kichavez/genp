@@ -8,7 +8,7 @@
 #include "Gb_CPU.h";
 
 Genp::Genp() {
-	m_targetFramerate = TARGET_FRAMERATE;
+	m_targetFramerate = genp_constant::TARGET_FRAMERATE;
 	m_cpu = new Gb_CPU(this);
 }
 
@@ -23,7 +23,7 @@ Genp::~Genp() {
 
 void Genp::loadRom(byte rom_buffer[], int rom_size) {
 	if (rom_size > MAX_CARTRIDGE_SIZE) {
-		throw std::runtime_error("ROM size exceeds maximum! (MAX = " + std::to_string(MAX_CARTRIDGE_SIZE) + " bytes)");
+		throw std::runtime_error("ROM size exceeds maximum! (MAX = " + std::to_string(genp_constant::MAX_CARTRIDGE_SIZE) + " bytes)");
 	}
 
 	for (int i = 0; i < rom_size; i++) {
@@ -43,7 +43,7 @@ void Genp::run() {
 void Genp::processNextFrame() {
 	int cycles{ 0 };
 
-	while (cycles < MAX_CYCLES_PER_SECOND) {
+	while (cycles < genp_constant::MAX_CYCLES_PER_SECOND) {
 		cycles += execNextOpcode();
 	}
 }

@@ -29,7 +29,7 @@ private:
 
 Gb_CPU::Gb_CPU(Genp* emulator) {
 	m_emulator = emulator;
-	m_pc = PC_INIT_VALUE;
+	m_pc = genp_constant::PC_INIT_VALUE;
 }
 
 void Gb_CPU::executeNextInstruction() {

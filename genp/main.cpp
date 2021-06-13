@@ -5,14 +5,12 @@
 #include "genp.h"
 #include "typedefs.h"
 
-using namespace std;
-
 void initEmulator();
 
 int main(int argc, char* argv[]) {
 
 	if (argc != 2) {
-		cerr << "Invalid number of arguments";
+		std::cerr << "Invalid number of arguments";
 		return 1;
 	}
 
@@ -24,10 +22,10 @@ int main(int argc, char* argv[]) {
 
 	emulator.loadRom(romBuffer, size);
 
-	cout << "Hello CMake." << endl;
+	std::cout << "Hello CMake." << std::endl;
 	return 0;
 }
 
 int initEmulator(char* file_path, byte*& buf) {
-	ifstream input(file_path, ios::binary);
+	std::ifstream input(file_path, std::ios::binary);
 }
