@@ -4,6 +4,7 @@
 #include "constants.h"
 #include "Register.h"
 #include "HalfRegister.h"
+#include "RegisterAF.h"
 
 class Genp;
 class Instruction;
