@@ -20,7 +20,7 @@ public:
 	// get modulo 2 of second octal (aka LSB of 2nd oct)
 	const byte getMidMod2() { return m_rawInstruction >> 3 & 0x01; }
 
-	const getFullInstruction() { return m_rawInstruction; }
+	const byte getFullInstruction() { return m_rawInstruction; }
 
 private:
 	byte m_rawInstruction;
