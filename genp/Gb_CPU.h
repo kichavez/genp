@@ -2,12 +2,13 @@
 
 #include "typedefs.h"
 #include "constants.h"
-#include "Register.h"
-#include "HalfRegister.h"
-#include "RegisterAF.h"
 
 class Genp;
 class Instruction;
+
+struct Register {
+	byte raw[2];
+};
 
 class Gb_CPU {
 public:
@@ -20,21 +21,37 @@ private:
 	Genp* m_emulator;
 
 	// registers
-	RegisterAF m_reg_af;
-	Register m_reg_bc;
-	Register m_reg_de;
-	Register m_reg_hl;
+	Register m_reg16_af;
+	Register m_reg16_bc;
+	Register m_reg16_de;
+	Register m_reg16_hl;
+
+	// references to register halves to make 8-bit operations easier to write
+	byte& m_reg8_a;
+	byte& m_reg8_f;
+	byte& m_reg8_b;
+	byte& m_reg8_c;
+	byte& m_reg8_d;
+	byte& m_reg8_e;
+	byte& m_reg8_h;
+	byte& m_reg8_l;
+
+	// register operations
+	byte add8(byte b1, byte b2);
+	word add16(word w1, word w2);
+	void set16(Register& reg, word val);
 
 	// stack pointer
-	Register m_sp;
+	word m_sp;
 
 	// program counter
-	Register m_pc;
+	word m_pc;
 
 	// disassembly tables to take advantage of certain patterns in CPU's instructions
-	byte* m_table_reg[8];	// 8 bit register table
+	byte* m_table_reg8[8];	// 8 bit register table
 	
 
 	void decodePrefixedInstruction(Instruction& instr);
 
+	void setCarryFlag(bool b);
 };
