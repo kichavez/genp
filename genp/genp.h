@@ -28,6 +28,7 @@ private:
 	friend class Gb_CPU;
 
 	byte m_cartridgeMem[genp_constant::MAX_CARTRIDGE_SIZE];
+	byte m_memory[genp_constant::MEMORY_SIZE];
 	uint64_t m_flags;
 	int m_targetFramerate;
 	bool m_running;
