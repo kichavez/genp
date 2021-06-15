@@ -56,14 +56,7 @@ Gb_CPU::Gb_CPU(Genp* emulator) {
 	m_pc = genp_constant::PC_INIT_VALUE;
 
 	// initialize disassembly tables
-	m_table_reg8[0] = &m_registers[B];
-	m_table_reg8[1] = &m_registers[C];
-	m_table_reg8[2] = &m_registers[D];
-	m_table_reg8[3] = &m_registers[E];
-	m_table_reg8[4] = &m_registers[H];
-	m_table_reg8[5] = &m_registers[L];
-	m_table_reg8[6] = &(emulator->m_memory[((word*)m_registers)[HL]]); // TODO: THIS IS INCORRECT; MOVE TO FUNC
-	m_table_reg8[7] = &m_registers[A];
+	// TODO: init these; make sure (HL) is an indirect reference
 }
 
 void Gb_CPU::executeNextInstruction() {
