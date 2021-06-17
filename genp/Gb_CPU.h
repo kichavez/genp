@@ -23,7 +23,7 @@ private:
 	Genp* m_emulator;
 
 	// registers
-	Register m_regs[genp_constant::NUM_16_BIT_REGISTERS];
+	Register m_regs16[genp_constant::NUM_16_BIT_REGISTERS];
 
 	// register operations
 	byte add8(byte b1, byte b2);	// TODO: REWRITE THESE TO WORK WITH NEW REG IMPL
@@ -41,7 +41,7 @@ private:
 	word* m_table_spReg16[4];	// 16 bit registers that interact with stack ptr
 	word* m_table_afReg16[4];	// 16 bit registers that interact with AF
 
-	byte read8Indirect(int register16Idx);
+	byte read8Indirect(int reg16idx);
 
 	void decodePrefixedInstruction(Instruction& instr);
 

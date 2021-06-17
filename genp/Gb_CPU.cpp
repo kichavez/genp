@@ -57,6 +57,12 @@ Gb_CPU::Gb_CPU(Genp* emulator) {
 
 	// initialize disassembly tables
 	// TODO: init these; make sure (HL) is an indirect reference
+	for (int i = 0; i < genp_constant::NUM_16_BIT_REGISTERS; i++) {
+		int upperHalfRegIdx = i * 2;
+		int lowerHalfRegIdx = upperHalfRegIdx + 1;
+
+		
+	}
 }
 
 void Gb_CPU::executeNextInstruction() {
@@ -95,5 +101,9 @@ word Gb_CPU::add16(word w1, word w2) {
 
 void Gb_CPU::set16(word* reg, word val) {
 	*reg = val;
+}
+
+byte Gb_CPU::read8Indirect(int reg16idx) {
+	return m_emulator->m_memory[m_regs16[reg16idx].get16()];
 }
 
