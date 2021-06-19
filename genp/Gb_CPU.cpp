@@ -2,6 +2,7 @@
 #include "Genp.h"
 #include "constants.h"
 #include "typedefs.h"
+#include "ReadWriteWrapper.h"
 
 namespace {
 	inline constexpr int HI_BYTE = 0;
@@ -26,6 +27,36 @@ namespace {
 	};
 
 }
+
+class Register8Wrapper : public ReadWriteWrapper {
+public:
+	word get() { return (m_regPtr->*m_get8)(); }
+	void set(word input) { return (m_regPtr->*m_set8)(input); }
+
+	Register8Wrapper(Register* fullRegPtr, byte(Register::* getter) (), void(Register::* setter) (byte)) {
+		m_set8 = setter;
+		m_get8 = getter;
+		m_regPtr = fullRegPtr;
+	}
+
+private:
+	void(Register::* m_set8) (byte);
+	byte(Register::* m_get8) ();
+	Register* m_regPtr;
+};
+
+class IndirectReadWriteWrapper : public ReadWriteWrapper {
+public:
+	word get();
+	void set(word input);
+
+	IndirectReadWriteWrapper(Register* reg16) {
+		m_reg = reg16;
+	}
+
+private:
+	Register* m_reg;
+};
 
 class Instruction {
 	
@@ -105,5 +136,9 @@ void Gb_CPU::set16(word* reg, word val) {
 
 byte Gb_CPU::read8Indirect(int reg16idx) {
 	return m_emulator->m_memory[m_regs16[reg16idx].get16()];
+}
+
+byte Gb_CPU::read8Memory(word address) {
+	return m_emulator->m_memory[address];
 }
 

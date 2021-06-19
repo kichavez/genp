@@ -16,8 +16,8 @@ public:
 private:
 
 	struct HalfRegister {
-		byte(Register::* get8) (byte);	// function ptr for setting 8 bit register value
-		void(Register::* set8) (byte);	// function ptr for getting 8 bit register value
+		byte(Register::* get8) ();		// function ptr for getting 8 bit register value
+		void(Register::* set8) (byte);	// function ptr for setting 8 bit register value
 	};
 
 	Genp* m_emulator;
@@ -42,6 +42,8 @@ private:
 	word* m_table_afReg16[4];	// 16 bit registers that interact with AF
 
 	byte read8Indirect(int reg16idx);
+
+	byte read8Memory(word address);
 
 	void decodePrefixedInstruction(Instruction& instr);
 
