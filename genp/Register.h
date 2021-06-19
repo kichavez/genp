@@ -20,11 +20,11 @@ public:
 
 	word get16() const;
 
-	void setHighByte();
+	void setHighByte(byte value);
 
 	byte getHighByte();
 
-	void setLowByte();
+	void setLowByte(byte value);
 
 	byte getLowByte();
 

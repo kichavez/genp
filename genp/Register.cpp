@@ -13,6 +13,22 @@ word Register::get16() const {
 	return retVal;
 }
 
+void Register::setHighByte(byte value) {
+	m_rawBytes[reg_const::HI_BYTE] = value;
+}
+
+byte Register::getHighByte() {
+	return m_rawBytes[reg_const::HI_BYTE];
+}
+
+void Register::setLowByte(byte value) {
+	m_rawBytes[reg_const::LO_BYTE] = value;
+}
+
+byte Register::getLowByte() {
+	return m_rawBytes[reg_const::LO_BYTE];
+}
+
 Register& Register::operator=(word value) {
 	set16(value);
 

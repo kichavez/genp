@@ -11,7 +11,7 @@ include_directories(${SDL2_INCLUDE_DIR})
 link_directories(${SDL2_LIB_DIR})
 
 # Add source to this project's executable.
-add_executable (genp "main.cpp" "Gb_CPU.cpp"    "Register.h" "Register.cpp" "ReadWriteWrapper.h")
+add_executable (genp "main.cpp" "Gb_CPU.cpp"    "Register.h" "Register.cpp" "ReadWriteWrapper8.h")
 target_link_libraries(${PROJECT_NAME} SDL2main SDL2)
 
 # TODO: Add tests and install targets if needed.
