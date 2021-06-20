@@ -18,6 +18,8 @@ public:
 
 	void write8Memory(word addr, byte val);
 
+	~Gb_CPU();
+
 private:
 
 	Genp* m_emulator;
@@ -41,9 +43,20 @@ private:
 	word* m_table_spReg16[4];	// 16 bit registers that interact with stack ptr
 	word* m_table_afReg16[4];	// 16 bit registers that interact with AF
 
+
+
 	byte read8Indirect(int reg16idx);
 
 	void decodePrefixedInstruction(Instruction& instr);
 
 	void setCarryFlag(bool b);
+
+	byte fetchNextInstruction();
+
+	// refer to section 2 of "DECODING Gameboy Z80 OPCODES" resource
+	// naming format goes doX<first_octet>[_prefixed]
+	void doX0(Instruction& i);
+	void doX1(Instruction& i);
+	void doX2(Instruction& i);
+	void doX3(Instruction& i);
 };

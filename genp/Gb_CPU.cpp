@@ -3,6 +3,7 @@
 #include "constants.h"
 #include "typedefs.h"
 #include "ReadWriteWrapper8.h"
+#include <stdexcept>
 
 namespace {
 	inline constexpr int HI_BYTE = 0;
@@ -116,7 +117,7 @@ Gb_CPU::Gb_CPU(Genp* emulator) {
 }
 
 void Gb_CPU::executeNextInstruction() {
-	Instruction instr(m_emulator->m_cartridgeMem[m_pc]);
+	Instruction instr(fetchNextInstruction());
 
 	switch (instr.getHighOctal()) {
 
@@ -130,9 +131,25 @@ void Gb_CPU::executeNextInstruction() {
 		
 		break;
 
+	case 0x00:
+		doX0(instr);
+		break;
 
+	case 0x01:
+		doX1(instr);
+		break;
+
+	case 0x02:
+		doX2(instr);
+		break;
+
+	case 0x03:
+		doX3(instr);
+		break;
 
 	default:
+		// we should never reach this
+		throw std::runtime_error("High octal value outside of range 0-3 in Gb_CPU::executeNextInstruction()! Something has gone very wrong if you can see this!");
 		break;
 	}
 }
@@ -146,13 +163,13 @@ void Gb_CPU::write8Memory(word addr, byte val) {
 }
 
 byte Gb_CPU::add8(byte b1, byte b2) {
-	word result = (word)b1 + b2;
+	word result = static_cast<word>(b1) + b2;
 	setCarryFlag(result >> 4);
 	return result;
 }
 
 word Gb_CPU::add16(word w1, word w2) {
-	double_word result = (double_word)w1 + w2;
+	double_word result = static_cast<double_word>(w1) + w2;
 	setCarryFlag(result >> 8);
 	return result;
 }
@@ -163,4 +180,10 @@ void Gb_CPU::set16(word* reg, word val) {
 
 byte Gb_CPU::read8Indirect(int reg16idx) {
 	return m_emulator->m_memory[m_regs16[reg16idx].get16()];
+}
+
+byte Gb_CPU::fetchNextInstruction() {
+	byte result = m_emulator->m_memory[m_pc];
+	m_pc++;
+	return result;
 }
