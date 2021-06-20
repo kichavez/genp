@@ -98,6 +98,7 @@ private:
 Gb_CPU::Gb_CPU(Genp* emulator) {
 	m_emulator = emulator;
 	m_pc = genp_constant::PC_INIT_VALUE;
+	m_sp = genp_constant::SP_INIT_VALUE;
 
 	// initialize disassembly tables
 	// TODO: init these; make sure (HL) is an indirect reference
