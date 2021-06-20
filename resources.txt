@@ -5,3 +5,6 @@ https://gb-archive.github.io/salvage/decoding_gbz80_opcodes/Decoding%20Gamboy%20
 
 Pan Docs
 http://bgb.bircd.org/pandocs.htm
+
+Game BoyTM CPU Manual
+http://marc.rawer.de/Gameboy/Docs/GBCPUman.pdf

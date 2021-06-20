@@ -55,8 +55,17 @@ private:
 
 	// refer to section 2 of "DECODING Gameboy Z80 OPCODES" resource
 	// naming format goes doX<first_octet>[_prefixed]
-	void doX0(Instruction& i);
-	void doX1(Instruction& i);
-	void doX2(Instruction& i);
-	void doX3(Instruction& i);
+	// all return number of cycles used
+
+	// relative jumps and assorted ops
+	int doX0(Instruction& i);
+
+	// 16-bit load immediate/add
+	int doX1(Instruction& i);
+
+	// indirect loading
+	int doX2(Instruction& i);
+
+	// assorted operations on accumulator flags
+	int doX3(Instruction& i);
 };
