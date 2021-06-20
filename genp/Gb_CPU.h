@@ -58,15 +58,12 @@ private:
 	// naming format goes doX<first_octet>[_prefixed]
 	// all return number of cycles used
 
-	// relative jumps and assorted ops
 	int doX0(Instruction& i);
 
-	// 16-bit load immediate/add
+	// 8 bit load ops
 	int doX1(Instruction& i);
 
-	// indirect loading
 	int doX2(Instruction& i);
 
-	// assorted operations on accumulator flags
 	int doX3(Instruction& i);
 };

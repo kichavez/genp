@@ -206,3 +206,24 @@ byte Gb_CPU::fetchNextInstruction() {
 	m_pc++;
 	return result;
 }
+
+int Gb_CPU::doX1(Instruction& i) {
+
+	int indirectHLIdx = static_cast<int>(Reg8_Table_Index::HL);
+
+	word y = i.getMidOctal();
+	word z = i.getLowOctal();
+
+	if (y == indirectHLIdx && z == indirectHLIdx) {
+		// TODO: raise exception (HALT)
+		return -1;
+	}
+
+	m_table_reg8[y]->set(m_table_reg8[z]->get());
+
+	// Register-to-register loads take 4 cycles, indirect load takes 8 cycles
+	if (y == indirectHLIdx || z == indirectHLIdx) {
+		return 8;
+	}
+	else return 4;
+}
