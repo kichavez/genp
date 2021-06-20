@@ -162,6 +162,14 @@ void Gb_CPU::write8Memory(word addr, byte val) {
 	m_emulator->m_memory[addr] = val;
 }
 
+Gb_CPU::~Gb_CPU() {
+#ifndef FAST_EXIT
+	for (int i = 0; i < 8; i++) {
+		delete m_table_reg8[i];
+	}
+#endif
+}
+
 byte Gb_CPU::add8(byte b1, byte b2) {
 	word result = static_cast<word>(b1) + b2;
 	setCarryFlag(result >> 4);
