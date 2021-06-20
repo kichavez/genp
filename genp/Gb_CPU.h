@@ -33,16 +33,17 @@ private:
 	void set16(word* reg, word val);
 
 	// stack pointer
-	word m_sp;
+	Register m_sp;
 
 	// program counter
 	word m_pc;
 
 	// disassembly tables to take advantage of certain patterns in CPU's instructions
 	ReadWriteWrapper8* m_table_reg8[8];		// 8 bit register table
-	word* m_table_spReg16[4];	// 16 bit registers that interact with stack ptr
-	word* m_table_afReg16[4];	// 16 bit registers that interact with AF
+	Register* m_table_spReg16[4];			// 16 bit registers that interact with stack ptr
+	Register* m_table_afReg16[4];			// 16 bit registers that interact with AF
 
+	// operation tables, also used to take advantage of patterns in instructions
 
 
 	byte read8Indirect(int reg16idx);

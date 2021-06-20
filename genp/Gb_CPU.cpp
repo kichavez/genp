@@ -114,6 +114,16 @@ Gb_CPU::Gb_CPU(Genp* emulator) {
 
 	m_table_reg8[static_cast<int>(Reg8_Table_Index::HL)] = new IndirectReadWriteWrapper(this, &m_regs16[static_cast<int>(Reg16::HL)]);
 	m_table_reg8[static_cast<int>(Reg8_Table_Index::A)] = new Register8Wrapper(&m_regs16[static_cast<int>(Reg16::AF)], &Register::getHighByte, &Register::setHighByte);
+
+	m_table_spReg16[0] = &m_regs16[static_cast<int>(Reg16::BC)];
+	m_table_spReg16[1] = &m_regs16[static_cast<int>(Reg16::DE)];
+	m_table_spReg16[2] = &m_regs16[static_cast<int>(Reg16::HL)];
+	m_table_spReg16[3] = &m_sp;
+
+	m_table_afReg16[0] = &m_regs16[static_cast<int>(Reg16::BC)];
+	m_table_afReg16[1] = &m_regs16[static_cast<int>(Reg16::DE)];
+	m_table_afReg16[2] = &m_regs16[static_cast<int>(Reg16::HL)];
+	m_table_afReg16[3] = &m_regs16[static_cast<int>(Reg16::AF)];
 }
 
 void Gb_CPU::executeNextInstruction() {
