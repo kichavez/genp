@@ -43,8 +43,10 @@ private:
 	Register* m_table_spReg16[4];			// 16 bit registers that interact with stack ptr
 	Register* m_table_afReg16[4];			// 16 bit registers that interact with AF
 
-	// operation tables, also used to take advantage of patterns in instructions
-
+	// funcs representing operation tables, also used to take advantage of patterns in instructions
+	bool doCondition(int condition, word arg1, word arg2);
+	void doAluOp(int operation, word arg);
+	void doRotShift(int operation, ReadWriteWrapper8* reg8);
 
 	byte read8Indirect(int reg16idx);
 

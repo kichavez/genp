@@ -210,9 +210,8 @@ byte Gb_CPU::fetchNextInstruction() {
 int Gb_CPU::doX1(Instruction& i) {
 
 	int indirectHLIdx = static_cast<int>(Reg8_Table_Index::HL);
-
-	word y = i.getMidOctal();
-	word z = i.getLowOctal();
+	short y = i.getMidOctal();
+	short z = i.getLowOctal();
 
 	if (y == indirectHLIdx && z == indirectHLIdx) {
 		// TODO: raise exception (HALT)
