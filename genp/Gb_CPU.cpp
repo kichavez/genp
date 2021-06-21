@@ -209,10 +209,14 @@ void Gb_CPU::set16(word* reg, word val) {
 }
 
 void Gb_CPU::doAluOp(int operation, word arg1, word arg2 = 0) {
+
+	ReadWriteWrapper8* regAPtr;
+
 	switch (operation) {
 	
 	case static_cast<int>(ALUOperations::ADD_A):
-		// TODO: impl
+		regAPtr = m_table_reg8[static_cast<int>(Reg8_Table_Index::A)];
+		regAPtr->set(regAPtr->get() + arg1);
 		break;
 
 	case static_cast<int>(ALUOperations::ADC_A):
