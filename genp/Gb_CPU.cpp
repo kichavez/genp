@@ -208,7 +208,7 @@ void Gb_CPU::set16(word* reg, word val) {
 	*reg = val;
 }
 
-void Gb_CPU::doAluOp(int operation, word arg1, word arg2) {
+void Gb_CPU::doAluOp(int operation, word arg1, word arg2 = 0) {
 	switch (operation) {
 	
 	case static_cast<int>(ALUOperations::ADD_A):
