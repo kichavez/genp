@@ -37,6 +37,17 @@ namespace {
 		HL,
 		A
 	};
+
+	const enum class ALUOperations {
+		ADD_A,
+		ADC_A,
+		SUB,
+		SBC_A,
+		AND,
+		XOR,
+		OR,
+		CP
+	};
 }
 
 class Register8Wrapper : public ReadWriteWrapper8 {
@@ -195,6 +206,46 @@ word Gb_CPU::add16(word w1, word w2) {
 
 void Gb_CPU::set16(word* reg, word val) {
 	*reg = val;
+}
+
+void Gb_CPU::doAluOp(int operation, word arg1, word arg2) {
+	switch (operation) {
+	
+	case static_cast<int>(ALUOperations::ADD_A):
+		// TODO: impl
+		break;
+
+	case static_cast<int>(ALUOperations::ADC_A):
+		// TODO: impl
+		break;
+
+	case static_cast<int>(ALUOperations::SUB):
+		// TODO: impl
+		break;
+
+	case static_cast<int>(ALUOperations::SBC_A):
+		// TODO: impl
+		break;
+
+	case static_cast<int>(ALUOperations::AND):
+		// TODO: impl
+		break;
+
+	case static_cast<int>(ALUOperations::XOR):
+		// TODO: impl
+		break;
+
+	case static_cast<int>(ALUOperations::OR):
+		// TODO: impl
+		break;
+
+	case static_cast<int>(ALUOperations::CP):
+		// TODO: impl
+		break;
+	
+	default:
+		break;
+	}
 }
 
 byte Gb_CPU::read8Indirect(int reg16idx) {

@@ -45,7 +45,7 @@ private:
 
 	// funcs representing operation tables, also used to take advantage of patterns in instructions
 	bool doCondition(int condition, word arg1, word arg2);
-	void doAluOp(int operation, word arg);
+	void doAluOp(int operation, word arg1, word arg2 = 0);
 	void doRotShift(int operation, ReadWriteWrapper8* reg8);
 
 	byte read8Indirect(int reg16idx);
