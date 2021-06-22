@@ -198,33 +198,37 @@ byte Gb_CPU::add8(byte b1, byte b2) {
 	return result;
 }
 
+word Gb_CPU::sub16(word w1, word w2) {
+
+	setCarryFlag(w1 < w2);
+
+	if (getCarryFlag())
+		return w2 - w1;
+	else return w1 - w2;
+}
+
 word Gb_CPU::add16(word w1, word w2) {
 	double_word result = static_cast<double_word>(w1) + w2;
 	setCarryFlag(result >> 8);
 	return result;
 }
 
-void Gb_CPU::set16(word* reg, word val) {
-	*reg = val;
-}
-
 void Gb_CPU::doAluOp(int operation, word arg1, word arg2 = 0) {
 
-	ReadWriteWrapper8* regAPtr;
+	ReadWriteWrapper8* regAPtr = m_table_reg8[static_cast<int>(Reg8_Table_Index::A)];
 
 	switch (operation) {
 	
 	case static_cast<int>(ALUOperations::ADD_A):
-		regAPtr = m_table_reg8[static_cast<int>(Reg8_Table_Index::A)];
-		regAPtr->set(regAPtr->get() + arg1);
+		regAPtr->set(add8(regAPtr->get(), arg1));
 		break;
 
 	case static_cast<int>(ALUOperations::ADC_A):
-		// TODO: impl
+		add8(regAPtr->get(), add8(arg1, getCarryFlag()));
 		break;
 
 	case static_cast<int>(ALUOperations::SUB):
-		// TODO: impl
+		//regAPtr->set()
 		break;
 
 	case static_cast<int>(ALUOperations::SBC_A):

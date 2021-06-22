@@ -29,8 +29,8 @@ private:
 
 	// register operations
 	byte add8(byte b1, byte b2);	// TODO: REWRITE THESE TO WORK WITH NEW REG IMPL
+	word sub16(word w1, word w2);
 	word add16(word w1, word w2);
-	void set16(word* reg, word val);
 
 	// stack pointer
 	Register m_sp;
@@ -53,6 +53,7 @@ private:
 	void decodePrefixedInstruction(Instruction& instr);
 
 	void setCarryFlag(bool b);
+	bool getCarryFlag();
 
 	byte fetchNextInstruction();
 
