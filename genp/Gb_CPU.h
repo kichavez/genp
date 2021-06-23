@@ -29,6 +29,7 @@ private:
 
 	// register operations
 	byte add8(byte b1, byte b2);	// TODO: REWRITE THESE TO WORK WITH NEW REG IMPL
+	byte sub8(byte b1, byte b2);
 	word sub16(word w1, word w2);
 	word add16(word w1, word w2);
 

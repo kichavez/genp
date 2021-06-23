@@ -198,6 +198,16 @@ byte Gb_CPU::add8(byte b1, byte b2) {
 	return result;
 }
 
+byte Gb_CPU::sub8(byte b1, byte b2) {
+	bool carryOccurred = b1 < b2;
+
+	setCarryFlag(carryOccurred);
+
+	if (carryOccurred)
+		return b2 - b1;
+	else return b1 - b2;
+}
+
 word Gb_CPU::sub16(word w1, word w2) {
 
 	setCarryFlag(w1 < w2);
